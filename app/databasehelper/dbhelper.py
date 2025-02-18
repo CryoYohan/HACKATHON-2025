@@ -2,7 +2,7 @@ from sqlite3 import connect, Row
 
 class Databasehelper:
     def __init__(self) -> None:
-        self.database = 'user.db'
+        self.database = 'kapitbisig.db'
 
     def getdb_connection(self):
         """Establishes and returns a database connection."""
@@ -36,10 +36,11 @@ class Databasehelper:
         query = f"SELECT * FROM {table}"
         return self.getprocess(query)
 
-    def find_record(self, table: str, idno: str):
-        """Finds a specific record by idno."""
-        sql = f"SELECT * FROM {table} WHERE idno = ?"
-        return self.getprocess(sql, (idno,))
+    def find_record(self, table: str, email: str):
+        """Finds a specific record by email."""
+        sql = f"SELECT * FROM {table} WHERE email = ?"
+        print(f"Executing query: {sql} with email={email}")
+        return self.getprocess(sql, (email,))
 
     def add_record(self, table:str, **kwargs):
         """Adds a new record to a table."""

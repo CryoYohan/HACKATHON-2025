@@ -2,6 +2,9 @@ from flask import Flask
 from dotenv import load_dotenv
 import os
 
+# Load environment variables from .env
+load_dotenv()
+
 def create_app():
     """Application factory function."""
     app = Flask(__name__)
@@ -13,11 +16,9 @@ def create_app():
 
     # Import and register blueprints (routes)
     from .routes import main  # Import your routes
-    #from .adminroute import admin # Register admin route
+    from .adminroute import admin  # Import your routes
 
-
-    #app.register_blueprint(admin)
     app.register_blueprint(main)
+    app.register_blueprint(admin)
 
     return app
-

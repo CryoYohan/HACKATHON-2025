@@ -1,53 +1,54 @@
-from hashpw import PasswordHashing
+from .hashpw import PasswordHashing
 from ..databasehelper.dbhelper import Databasehelper
 
-class Authorization():
+class Authorization:
     def __init__(self):
         self.encrypt = PasswordHashing()
         self.db = Databasehelper()
 
-    def login(**kwargs):
+    def login(self, **kwargs):
+        """Check if a student account exists and return a Student instance if valid."""
         email = kwargs.get('email')
-
+        password = kwargs.get('password')  # Get password from kwargs
         try:
-            volunteer_exist = self.db.find_record('kapitbisig', email=email)
-            if volunteer_exist:
-                for data in volunteer_exist:
+            student_exists = self.db.find_record('user', email=email)
 
-                    password_correct = self.hashpasword.check_password(password, data['password'])
+            if student_exists:
+                user_data = student_exists[0]  # Access the first (and only) user record
+                try:
+                    password_correct = self.encrypt.check_password(password, user_data['password'])
                     if password_correct:
                         return {
-                                        'success': True,
-                                        'idno': data['idno'],
-                                        'firstname': data['firstname'],
-                                        'middlename': data['middlename'],
-                                        'lastname': data['lastname'],
-                                        'course': data['course'],
-                                        'year': data['year'],
-                                        'email': data['email'],
-                                        'image': data['image'],
-                                        'session': data['session'],
-                                        }
+                            'success': True,
+                            'name': user_data['name'],
+                            'email': user_data['email'],
+                        }
                     else:
-                        return {'success': False, 'error' :'Password incorrect!' }
-
+                        return {'success': False, 'error': 'Password incorrect!'}
+                except Exception as e:
+                    return {'success': False, 'error': str(e)}           
             else:
-                return {'success': False, 'error': 'User does not exist!'}
+                return {'success': False, 'error': 'User does not exist.'}
 
         except Exception as e:
-            return {'success': False, 'error':str(e)}
+            return {'success': False, 'error': str(e)}
 
+                
 
-    def register(**kwargs):
-        email_exist =  [user['email'] for user in users if user['email'] == kwargs.get('email')]
-        if not email_exist:
+    def register(self, **kwargs):
+        email = kwargs.get('email')
+        existing_user = self.db.find_record('user', email=email)
+
+        if not existing_user:
             hashed_password = self.encrypt.hashpassword(kwargs.get('password'))
+            volunteer_data = {k: v for k, v in kwargs.items() if k != 'password'}
 
-            volunteer_data = {k:v for k,v in kwargs.items() if k != 'password'}
-            self.db.add_record(table='kapitbisig',**volunteer_data)
-            
+            volunteer_data['password'] = hashed_password  # Store hashed password
+            self.db.add_record(table='user', **volunteer_data)
+
+            del volunteer_data['password']
+
             volunteer_data['success'] = True
-
             return volunteer_data
         else:
-            return {'success': False, 'error': 'Email already exists!'} 
+            return {'success': False, 'error': 'Email already exists!'}
