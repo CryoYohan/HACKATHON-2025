@@ -27,7 +27,6 @@
                     <a href="{{ url_for('main.viewpost',id=post.id) }}" class="bg-white border border-[#00d238] text-[#00d238] px-6 py-2 rounded-full">
                         View
                     </a>
-                    <button class="bg-[#00d238] border border-[#00d238] text-[#ffff] px-7 py-2 rounded-full">Join</button>
                 </div>
             </div>
             </div>
@@ -35,7 +34,16 @@
 
         </div>            
     </div>
-        
+
+    <!-- Volunteer Profile Icons Section -->
+    <div id="volunteers" class="w-[70%] h-[100px] flex justify-start gap-2 relative">
+        {% for volunteer in volunteers %}
+        <div class="w-10 h-10 rounded-full overflow-hidden bg-gray-400 absolute -left-{{ loop.index * 3 }}">
+            <img src="{{ url_for('static', filename='Images/' + volunteer.profileicon) }}" alt="Volunteer Icon" class="w-full h-full object-cover">
+        </div>
+        {% endfor %}
+    </div>
+
 </section>
 
 <!-- Overlay Div -->
@@ -55,4 +63,5 @@
         </div>
     </div>
 </div>
+
 {% endblock %}

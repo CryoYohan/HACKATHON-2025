@@ -53,7 +53,7 @@ class Databasehelper:
         query = f'''
             SELECT p.id, p.title, p.content, 
                 p.category, p.type, p.event_date, p.status, 
-                p.created_at, p.location, p.picture, 
+                p.created_at, p.location, p.picture,u.id as user_id, 
                 u.name, u.email, u.profileicon
             FROM {table} p
             JOIN user u ON p.user_id = u.id
@@ -68,6 +68,16 @@ class Databasehelper:
         sql = f"SELECT * FROM {table} WHERE email = ?"
         print(f"Executing query: {sql} with email={email}")
         return self.getprocess(sql, (email,))
+    
+    def find_record_by_user_post(self, table: str, user_id: int, post_id: int):
+        """Finds a specific record based on user_id and post_id."""
+        sql = f'''
+            SELECT * FROM {table} 
+            WHERE user_id = ? AND post_id = ?
+        '''
+        print(f"Executing query: {sql} with user_id={user_id}, post_id={post_id}")
+        return self.getprocess(sql, (user_id, post_id))
+
 
     def add_record(self, table:str, **kwargs):
         """Adds a new record to a table."""

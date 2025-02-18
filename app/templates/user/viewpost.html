@@ -1,4 +1,4 @@
-{% extends 'Dashboard.html' %}
+{% extends 'dashboardtemplate.html' %}
 {% block content %}
 <div class="w-full h-screen flex justify-center items-center bg-gray-100">
     <form class="w-[90%] max-w-3xl h-[90vh] flex flex-col gap-4 bg-white p-6 shadow-lg rounded-lg overflow-y-auto">
@@ -38,7 +38,11 @@
                 <a href="#" class="bg-gray-300 text-black py-2 px-4 rounded-full hover:bg-gray-400 transition">Comment</a>
             </div>
 
-            <button class="bg-[#00d238] border border-[#00d238] text-white px-7 py-2 rounded-full hover:bg-[#00a123] transition">Join</button>
+            <a href="{{ url_for('main.join', id=post.id,user_id=post.user_id) }}" class="bg-[#00d238] border border-[#00d238] text-white px-7 py-2 rounded-full hover:bg-[#00a123] transition inline-block">
+                Join
+            </a>
+            
+
         </div>
 
         <!-- Comment Section -->
