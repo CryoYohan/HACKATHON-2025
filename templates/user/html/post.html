@@ -3,9 +3,50 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Post Event</title>
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
-    <h1>yawa</h1>
+<body class="bg-gray-100 font-Poppins flex justify-center items-center min-h-screen">
+
+    <div class="bg-white p-8 rounded-lg shadow-xl w-full sm:w-2/3 lg:w-1/2">
+        <h1 class="text-3xl font-semibold text-center text-gray-800 mb-6">Post Event</h1>
+        
+        <form action="#" method="POST" enctype="multipart/form-data">
+            <!-- Event Type -->
+            <div class="mb-4">
+                <label for="event-type" class="block text-gray-700 font-semibold mb-2">Event Type</label>
+                <select id="event-type" name="event-type" class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                    <option value="" disabled selected>Select an event type</option>
+                    <option value="social">Social</option>
+                    <option value="educational">Educational</option>
+                    <option value="healthcare">Healthcare</option>
+                    <option value="environmental">Environmental</option>
+                </select>
+            </div>
+
+            <div class="mb-4">
+                <label for="event-name" class="block text-gray-700 font-semibold mb-2">Event Name</label>
+                <input type="text" id="event-name" name="event-name" placeholder="Enter event name" class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+            </div>
+
+            <div class="mb-4">
+                <label for="event-date" class="block text-gray-700 font-semibold mb-2">Event Date</label>
+                <input type="date" id="event-date" name="event-date" class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+            </div>
+
+            <div class="mb-4">
+                <label for="event-description" class="block text-gray-700 font-semibold mb-2">Event Description</label>
+                <textarea id="event-description" name="event-description" rows="4" placeholder="Enter event description" class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required></textarea>
+            </div>
+
+            <div class="mb-4">
+                <label for="event-photo" class="block text-gray-700 font-semibold mb-2">Upload Event Photo</label>
+                <input type="file" id="event-photo" name="event-photo" accept="image/*" class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+            </div>
+
+            <button type="submit" class="w-full bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700 transition duration-300">Post Event</button>
+        </form>
+    </div>
+
 </body>
 </html>
