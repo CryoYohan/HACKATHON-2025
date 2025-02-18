@@ -36,10 +36,10 @@
                     <input type="password" id="password" name="password" required
                         class="w-full h-[10%] px-4 py-2 mb-4 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-400 focus:outline-none">
         
-                    <button id="Dashboard" type="submit" name="login"
+                    <button id="Dashboard" type="submit" href="Dashboard.html"
                         class="w-full h-[10%] bg-blue-500 text-white border-none font-semibold py-2 rounded-lg transition hover:bg-blue-600">
                         Login
-                    </button>
+                </button>
         
                     <p class="mt-4 text-gray-600">
                         Don't have an account? 
@@ -65,6 +65,19 @@
                     .catch(error => console.error('Error fetching content:', error));
             });
         });
+
+        function toggleOverlay() {
+            const overlay = document.getElementById('overlay');
+            overlay.style.display = overlay.style.display === 'flex' ? 'none' : 'flex';
+        }
+
+        // Close overlay when clicking outside of the content
+        function closeOverlay(event) {
+            if (event.target === document.getElementById('overlay')) {
+                toggleOverlay();
+            }
+        }
+
     </script>
 
 </body>
