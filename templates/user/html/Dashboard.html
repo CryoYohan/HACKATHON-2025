@@ -52,19 +52,6 @@
 </head>
 <body class="flex flex-row m-0 p-0 w-screen justify-center overflow-hidden">
 
-    <section id="navigation" class="w-[15%] h-screen flex flex-col items-center bg-[#023047] gap-20">
-        <div id="logo" class="py-10">
-            <h1 class="text-2xl font-bold text-[40px] text-[#ffff]"><span class="text-[#FFB703]">Kapit</span>-Bisig</h1>
-        </div>  
-
-        <div class="flex flex-col justify-center">
-            <a class="text-[#ffff]" href="#" id="Home">Home</a>
-            <a class="text-[#ffff]" href="#" id="post">Post</a>
-            <a class="text-[#ffff]" href="#" id="eventsj">Events Joined</a>
-            <a class="text-[#ffff]" href="#" id="eventsc">Events Created</a>
-            <a class="text-[#ffff]" href="#" id="profile">Profile</a>
-        </div>
-    </section>
     
     <section id="container" class="w-[85%] flex flex-col items-center justify-center">
         <div id="searchdiv" class="flex flex-row w-full items-center justify-center gap-4 m-5 mt-5">
@@ -103,28 +90,19 @@
     </section>
 
     <script>
-        // Function to bind navigation links
-        function bindNavigationLinks() {
-            const links = ["register", "Dashboard", "post", "eventsc", "eventsj", "profile", "post", "viewpost"];
-            links.forEach(id => {
-                const link = document.getElementById(id);
-                if (link) {
-                    link.addEventListener("click", function(event) {
-                        event.preventDefault();
-                        fetch(`./${id}.html`)
-                            .then(response => response.text())
-                            .then(data => {
-                                document.getElementById("container").innerHTML = data;
-                                bindNavigationLinks(); // Rebind the navigation links after content is updated
-                            })
-                            .catch(error => console.error('Error fetching content:', error));
-                    });
-                }
+        const links = ["post", "eventsc", "eventsj", "profile", "post" , "viewpost"];
+        links.forEach(id => {
+            document.getElementById(id).addEventListener("click", function(event) {
+                event.preventDefault();
+                fetch(`./${id}.html`)
+                    .then(response => response.text())
+                    .then(data => {
+                        document.getElementById("container").innerHTML = data;
+                    })
+                    .catch(error => console.error('Error fetching content:', error));
             });
-        }
+        });
 
-        // Initial binding of navigation links
-        bindNavigationLinks();
 
 
     </script>
