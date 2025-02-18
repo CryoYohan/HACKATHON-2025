@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+    <title>Dashboard</title>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+    
+        * {
+            font-family: 'Poppins';
+        }
+        a {
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: 500;
+            padding-top: 15px;
+            color: #ffff;
+            padding-bottom: 10px;
+            display: flex;
+            border-radius: 8px;
+            padding: 15px;
+        }
+        a:hover {
+            background-color: #917ECD;
+        }
+        a.active {
+            background-color: #917ECD;
+        }
+    </style>
+</head>
+<body class="flex flex-row m-0 p-0 w-screen justify-center overflow-hidden">
+
+    <section id="navigation" class="w-[15%] h-screen flex flex-col items-center bg-[#023047] gap-20">
+        <div id="logo" class="py-10">
+            <h1 class="text-2xl font-bold text-[40px] text-[#ffff]"><span class="text-[#FFB703]">Kapit</span>-Bisig</h1>
+        </div>  
+
+        <div class="flex flex-col justify-center">
+            <a href="#" id="DashBoard">Home</a>
+            <a href="#" id="Announcement">Post</a>
+            <a href="#" id="SitInRules">Events Joined</a>
+            <a href="#" id="LabRules">Events Created </a>
+            <a href="#" id="LabRules">Profile</a>
+        </div>
+    </section>
+    
+    <section id="container" class="w-[85%] flex flex-col items-center justify-center">
+        <div id="searchdiv" class="flex flex-row w-full items-center justify-center gap-4 m-5 mt-5">
+            <input type="text" name="search" placeholder="Search..." class="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400">
+            <input type="submit" name="filter" value="Filter" class="bg-blue-500 text-white font-semibold py-2 px-6 rounded-lg hover:bg-blue-600 transition cursor-pointer">
+        </div>   
+
+        <div id="main-content" class="w-full h-full flex flex-row items-center justify-center gap-4">
+            <div id="left" class="w-[70%] h-[900px] flex flex-col items-center justify-start gap-6 overflow-y-auto">
+                <div id="main-top" class="w-[95%] h-[280px] bg-gray-200 flex-shrink-0">
+                    <div id="intop" class="w-[100%] h-[60%] bg-red-100">
+                        <img class="h-[100%]" src="../Images/eveimg.png" alt="yagit">
+                    </div>
+                    <div id="intop">
+                        <div id="intop" class="flex items-center justify-between p-4">
+                            <div id="pfpname" class="flex items-center gap-4">
+                                <div id="profile-pic" class="w-12 h-12 rounded-full bg-gray-400"></div>
+                                <div id="user-info">
+                                    <p id="program-name" class="font-bold text-lg">Program Name</p>
+                                    <p id="user-name" class="text-sm text-gray-700">User Name</p>
+                                    <p id="user-address" class="text-xs text-gray-500">User Address</p>
+                                </div>
+                            </div>
+                            <div id="viewjoin">
+                                <img src=" " alt="">
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+                <div id="main-top" class="w-[95%] h-[200px] bg-gray-200 flex-shrink-0">
+                    sample
+                </div>
+                <div id="main-top" class="w-[95%] h-[200px] bg-gray-200 flex-shrink-0">
+                    sample
+                </div>
+                <div id="main-top" class="w-[95%] h-[200px] bg-gray-200 flex-shrink-0">
+                    sample
+                </div>
+                <div id="main-top" class="w-[95%] h-[200px] bg-gray-200 flex-shrink-0">
+                    sample
+                </div>
+            </div>            
+        </div>
+            
+        
+    </section>
+
+</body>
+</html>
