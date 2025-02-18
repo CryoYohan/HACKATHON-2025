@@ -3,9 +3,42 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Profile</title>
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
-    <h1>sample</h1>
+<body class="bg-gray-100 font-Poppins flex justify-center items-center min-h-screen">
+
+    <div class="bg-white p-8 rounded-lg shadow-lg w-full sm:w-2/3 lg:w-1/2">
+        <h1 class="text-3xl font-semibold text-center text-gray-800 mb-6">Edit Profile</h1>
+
+        <form action="#" method="POST" enctype="multipart/form-data">
+
+            <div class="mb-6 text-center">
+                <label for="profile-picture" class="block text-gray-700 font-semibold mb-2">Profile Picture</label>
+                <div class="flex justify-center mb-4">
+                    <img id="preview" src="https://via.placeholder.com/150" alt="Profile Picture" class="w-32 h-32 rounded-full object-cover border-2 border-gray-300">
+                </div>
+                <input type="file" id="profile-picture" name="profile-picture" accept="image/*" class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+            </div>
+
+            <div class="mb-4">
+                <label for="full-name" class="block text-gray-700 font-semibold mb-2">Full Name</label>
+                <input type="text" id="full-name" name="full-name" value="John Doe" placeholder="Enter your full name" class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+            </div>
+
+            <div class="mb-4">
+                <label for="email" class="block text-gray-700 font-semibold mb-2">Email Address</label>
+                <input type="email" id="email" name="email" value="johndoe@example.com" placeholder="Enter your email address" class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+            </div>
+
+            <div class="mb-6">
+                <label for="password" class="block text-gray-700 font-semibold mb-2">Password</label>
+                <input type="password" id="password" name="password" placeholder="Enter your password" class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+            </div>
+
+            <button type="submit" class="w-full bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700 transition duration-300">Save Changes</button>
+        </form>
+    </div>
+
 </body>
 </html>
