@@ -41,6 +41,22 @@ def dashboard():
     print(posts)
     return render_template('Dashboard.html', posts=posts)
 
+
+@main.route('/viewpost/<id>')
+def viewpost(id):
+    post = db.find_record_with_user('Post', id=id)
+    
+    if not post:
+        return "Post not found", 404
+
+    # Check if it's a list and get the first record
+    if isinstance(post, list) and len(post) > 0:
+        post = post[0]  
+
+    return render_template('viewpost.html', post=post)
+
+@main.route('/join/<id>')
+
 # Login handling route
 @main.route('/login', methods=['POST'])
 def login():

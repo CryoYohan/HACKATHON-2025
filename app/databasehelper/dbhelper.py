@@ -47,6 +47,21 @@ class Databasehelper:
             JOIN user u ON p.user_id = u.id
         '''
         return self.getprocess(query)
+    
+    def find_record_with_user(self, table: str, id: int):
+        """Finds a specific post record by user email, joining with the user table."""
+        query = f'''
+            SELECT p.id, p.title, p.content, 
+                p.category, p.type, p.event_date, p.status, 
+                p.created_at, p.location, p.picture, 
+                u.name, u.email, u.profileicon
+            FROM {table} p
+            JOIN user u ON p.user_id = u.id
+            WHERE p.id = ?
+        '''
+        print(f"Executing query: {query} with id={id}")
+        return self.getprocess(query, (id,))
+
 
     def find_record(self, table: str, email: str):
         """Finds a specific record by email."""
