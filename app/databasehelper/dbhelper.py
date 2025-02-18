@@ -35,6 +35,18 @@ class Databasehelper:
         """Retrieves all records from a specified table."""
         query = f"SELECT * FROM {table}"
         return self.getprocess(query)
+    
+    def getall_records_with_user(self, table: str) -> list:
+        """Retrieves all records from the specified table and joins with the user table to get user names."""
+        # Define the query to join 'post' and 'user' tables
+        query = f'''
+            SELECT p.id, p.title, p.content, 
+                p.category, p.type, p.event_date, p.status, 
+                p.created_at, p.location, p.picture, u.name, u.email,u.profileicon
+            FROM {table} p
+            JOIN user u ON p.user_id = u.id
+        '''
+        return self.getprocess(query)
 
     def find_record(self, table: str, email: str):
         """Finds a specific record by email."""

@@ -1,9 +1,12 @@
 from flask import Blueprint, render_template, session, url_for, redirect, flash, request
 from .authorization.login_register import Authorization
 from .entities.volunteer import Volunteer
+from .databasehelper.dbhelper import Databasehelper
 
 # Define your blueprint
 main = Blueprint('main', __name__, template_folder='templates/user')
+
+db = Databasehelper()
 
 # Initialize the Authorization object
 auth = Authorization()
@@ -32,10 +35,11 @@ def registervolunteer():
     return render_template('register.html')
 
 
-# Dashboard route
 @main.route('/dashboard')
 def dashboard():
-    return render_template('Dashboard.html')
+    posts = db.getall_records_with_user('Post')
+    print(posts)
+    return render_template('Dashboard.html', posts=posts)
 
 # Login handling route
 @main.route('/login', methods=['POST'])
