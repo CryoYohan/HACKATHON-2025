@@ -1,0 +1,35 @@
+{% extends 'dashboardtemplate.html' %}
+{% block content %}
+<div class="max-w-4xl mx-auto p-6 bg-white rounded-lg shadow-md">
+    <h2 class="text-2xl font-semibold text-gray-800 mb-6">Profile Settings</h2>
+
+    <form action="#" method="POST" enctype="multipart/form-data">
+        <!-- Profile Picture Section -->
+        <div class="flex items-center space-x-4 mb-6">
+            <div class="w-24 h-24 rounded-full overflow-hidden border-2 border-gray-300">
+                <img src="{{ url_for('static', filename='Images/' + user.profileicon) }}" alt="Profile Icon" class="w-full h-full object-cover">
+            </div>
+            <div>
+                <label for="profile-icon" class="text-sm font-medium text-gray-700">Change Profile Picture</label>
+                <input type="file" id="profile-icon" name="profileicon" accept="image/*" class="mt-2 block w-full text-sm text-gray-700 bg-gray-50 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
+            </div>
+        </div>
+
+        <!-- Name Section -->
+        <div class="mb-4">
+            <label for="name" class="block text-gray-700 font-semibold mb-2">Name</label>
+            <input type="text" id="name" name="name" value="{{ user.name }}" class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+        </div>
+
+        <!-- Email Section -->
+        <div class="mb-6">
+            <label for="email" class="block text-gray-700 font-semibold mb-2">Email</label>
+            <input type="email" id="email" name="email" value="{{ user.email }}" class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+        </div>
+
+        <!-- Save Button -->
+        <button type="submit" class="w-full bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700 transition duration-300">Save Changes</button>
+    </form>
+</div>
+
+{% endblock %}

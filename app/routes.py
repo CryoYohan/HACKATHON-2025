@@ -45,12 +45,17 @@ def dashboard():
     print(posts)
     return render_template('Dashboard.html', posts=posts)
 
+@main.route('/post')
+def post():
+    global volunteer
+    user_id = session.get('id')
+    return render_template('post.html',user_id=user_id)
+
 
 @main.route('/viewpost/<id>')
 def viewpost(id):
     global volunteer
     post = db.find_record_with_user('Post', id=id)
-    volunteers = db.getall_records('Post_Participation')
     
     if not post:
         return "Post not found", 404
@@ -59,8 +64,51 @@ def viewpost(id):
     if isinstance(post, list) and len(post) > 0:
         post = post[0]  
 
+    # Fetch volunteers who have joined this post using the custom method
+    volunteers = db.get_volunteers_by_post(id)
+
     return render_template('viewpost.html', post=post, volunteers=volunteers)
 
+@main.route('/addpost', methods=['POST'])
+def addpost():
+    category = request.form['category']
+    title = request.form['title']
+    event_date = request.form['event_date']
+    content = request.form['content']
+    user_id = request.form['user_id']
+
+    db.add_record('Post', title=title, event_date=event_date, category=category, content=content, picture='shark.png', user_id=user_id, status='APPROVED', approved_by=13,type=None, created_at=datetime.now())
+    flash('Event added successfully!', 'success')
+
+    return redirect(url_for('main.dashboard'))  # Redirect after form submission, adjust 'some_page' accordingly
+
+
+ 
+@main.route('/eventsjoined')
+def eventsjoined():
+    return render_template('eventsj.html')
+
+@main.route('/profile')
+def profile():
+    global volunteer
+
+    # Assuming db.find_record returns a list, check if it's a list and get the first record
+    user = db.find_record('user', email=volunteer.email)
+    if isinstance(user, list) and len(user) > 0:
+        user = user[0]  # Take the first record in the list
+
+    return render_template('profile.html', user=user)
+
+
+@main.route('/eventsc')
+def eventsc():
+    return render_template('eventsc.html')
+
+@main.route('/logout')
+def logout():
+    session['user'] = None
+    flash('Logout Successfully!','success')
+    return redirect(url_for('main.loginvolunteer'))
 
 @main.route('/join/<id>/<user_id>')
 def join(id,user_id):

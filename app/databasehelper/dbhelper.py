@@ -30,6 +30,17 @@ class Databasehelper:
         cursor.close()
         connection.close()
         return row_count > 0  # Returns True if at least one row is affected
+    
+    def get_volunteers_by_post(self, post_id: int):
+        """Fetches all volunteers who have joined a specific post."""
+        query = '''
+            SELECT pp.id, pp.user_id, u.name, u.profileicon 
+            FROM Post_Participation pp
+            JOIN user u ON pp.user_id = u.id
+            WHERE pp.post_id = ?
+        '''
+        print(f"Executing query: {query} with post_id={post_id}")
+        return self.getprocess(query, (post_id,))
 
     def getall_records(self, table: str) -> list:
         """Retrieves all records from a specified table."""

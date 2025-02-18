@@ -3,8 +3,16 @@
 <section id="container" class="w-[85%] flex flex-col items-center justify-center">
     <div id="searchdiv" class="flex flex-row w-full items-center justify-center gap-4 m-5 mt-5">
         <input type="text" name="search" placeholder="Search..." class="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400">
-        <input type="submit" name="filter" value="Filter" class="bg-blue-500 text-white font-semibold py-2 px-6 rounded-lg hover:bg-blue-600 transition cursor-pointer">
-    </div>   
+        
+        <select name="filter_category" class="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400">
+            <option value="" disabled selected>Select category</option>
+            <option value="social">Social</option>
+            <option value="educational">Educational</option>
+            <option value="environmental">Environmental</option>
+            <option value="healthcare">Healthcare</option>
+        </select>
+    </div>
+     
 
     <div id="main-content" class="w-full h-full flex flex-row items-center justify-center gap-4">
         <div id="left" class="w-[70%] h-[900px] flex flex-col items-center justify-start gap-6 overflow-y-auto">
